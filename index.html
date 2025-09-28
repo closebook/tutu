@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Tutu — With Love ❤️</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="hearts" aria-hidden="true">
+      <div class="heart" style="left:10%;top:30%"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-8-5.6-10-9.2C-1 7 3 3 6 5c1.6 1.2 2 3 6 6 4-3 4.4-4.8 6-6 3-2 7 2 4 6.8C20 15.4 12 21 12 21z" fill="#ff6b9a"/></svg></div>
+      <div class="heart" style="left:80%;top:18%"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-8-5.6-10-9.2C-1 7 3 3 6 5c1.6 1.2 2 3 6 6 4-3 4.4-4.8 6-6 3-2 7 2 4 6.8C20 15.4 12 21 12 21z" fill="#ffd166"/></svg></div>
+      <div class="heart" style="left:60%;top:70%"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-8-5.6-10-9.2C-1 7 3 3 6 5c1.6 1.2 2 3 6 6 4-3 4.4-4.8 6-6 3-2 7 2 4 6.8C20 15.4 12 21 12 21z" fill="#ff9fb3"/></svg></div>
+    </div>
+
+    <header>
+      <div class="avatar" title="Replace the image with Nitya's photo">
+        <img src="tutu.jpg" alt="Tutu">
+      </div>
+
+      <div class="title">
+        <h1>For <span style="color:var(--accent)">Tutu</span>, my Nitya</h1>
+        <p class="lead">Every moment with you feels like the story I keep re-reading.</p>
+        <div class="meta">Made with ❤️ — By <span id="date">Beluga</span></div>
+      </div>
+
+      <div style="min-width:120px;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <button class="btn btn-pink" id="surprise">Surprise ✨</button>
+        <button class="btn btn-glass" id="edit">Edit message</button>
+      </div>
+    </header>
+
+    <div class="message" id="message">
+      <p class="big-quote">Hey <strong>Tutu</strong> —
+        <span class="typewriter" id="type">you make my ordinary days shine. Thank you for being you.</span>
+      </p>
+      <p class="meta">I promise to hold your hand, hear your dreams, and be your favourite hello and hardest goodbye. — <em>always,</em> <strong>Me</strong></p>
+
+      <div class="actions">
+        <button class="btn btn-pink" id="play">Play song</button>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="small-card">
+        <strong>Little reasons I love you</strong>
+        <ul style="margin:8px 0 0 18px">
+          <li>Your laugh — it’s my favourite sound</li>
+          <li>The way you say my name</li>
+          <li>How you make even silence feel comfortable</li>
+        </ul>
+      </div>
+
+      <div class="small-card">
+        <strong>Today's thought</strong>
+        <p style="margin:6px 0 0;">When we build small memories, they grow into our sweetest forever.</p>
+      </div>
+    </div>
+
+    <audio id="song" src="song.mp3" preload="none"></audio>
+
+    <canvas id="confetti"></canvas>
+
+  </div>
+
+  <script src="scripts.js">
+  </script>
+</body>
+</html>
