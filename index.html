@@ -1,69 +1,299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Open My Surprise 💌</title>
-  <style>
-    :root {
-      --bg: linear-gradient(135deg,#0f172a,#0ea5a4 50%,#7c3aed);
-      --card: rgba(255,255,255,0.06);
-      --accent: #ff6b81;
-      --glass: rgba(255,255,255,0.06);
-    }
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-    body{
-      background: var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#e6eef8;
-      padding:24px;
-    }
-    .wrap{
-      text-align:center;
-      max-width:740px;
-      width:100%;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:16px;
-      padding:36px;
-      box-shadow: 0 8px 40px rgba(2,6,23,0.6);
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(6px);
-    }
-    h1{margin:0 0 8px;font-size:28px;letter-spacing:0.2px}
-    p{margin:0 0 18px;color:rgba(230,238,248,0.9)}
-    .open-btn{
-      display:inline-block;
-      padding:14px 26px;
-      border-radius:999px;
-      background: linear-gradient(90deg,#ff7aa2,#ffb86b);
-      color:#081221;
-      font-weight:700;
-      text-decoration:none;
-      box-shadow: 0 8px 24px rgba(255,118,139,0.18);
-      transform: translateY(0);
-      transition: transform .16s ease, box-shadow .16s ease;
-    }
-    .open-btn:hover{ transform: translateY(-4px); box-shadow: 0 18px 36px rgba(255,118,139,0.22); }
-    .hint{ margin-top:14px; font-size:13px; color:rgba(230,238,248,0.65) }
-    footer{ margin-top:18px; font-size:12px; color:rgba(230,238,248,0.45) }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise 💌</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff7aa2;
+            text-shadow: 0 0 10px rgba(255, 122, 162, 0.5);
+        }
+        
+        .heart {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #ff7aa2, #ff4d8d);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 122, 162, 0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 122, 162, 0.6);
+        }
+        
+        /* Password Modal */
+        #password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 30px rgba(255, 122, 162, 0.3);
+            border: 1px solid rgba(255, 122, 162, 0.3);
+            position: relative;
+        }
+        
+        .modal-content h2 {
+            color: #ff7aa2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .riddle {
+            background: rgba(255, 122, 162, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .riddle p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 122, 162, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #ff7aa2;
+            box-shadow: 0 0 10px rgba(255, 122, 162, 0.5);
+        }
+        
+        .error-message {
+            color: #ff4d4d;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ff7aa2;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Surprise Modal */
+        #surprise-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        #surprise-modal iframe {
+            width: 90%;
+            height: 90%;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        #surprise-modal button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #ff7aa2;
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hint {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>For my Tutu 💖</h1>
-      <p>I made something special for you. Click the button below to see it.</p>
-
-      <!-- The link opens love.html in a new tab -->
-      <a class="open-btn" href="index/tutu/index.html" rel="noopener noreferrer">Open your page</a>
-
-      <div class="hint">Tip: best viewed on a desktop or phone in full screen ✨</div>
-      <footer>Made with ❤️ by me</footer>
+    <div class="container">
+        <h1>For My Special Someone 💕</h1>
+        <div class="heart">💖</div>
+        <p>A little surprise is waiting for you...</p>
+        <button class="button" onclick="openPasswordModal()">Open Your Surprise</button>
     </div>
-  </div>
+
+    <!-- Password Modal -->
+    <div id="password-modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closePasswordModal()">✕</button>
+            <h2>Unlock Your Surprise</h2>
+            <div class="riddle">
+                <p>To unlock this page, solve the riddle:</p>
+                <p><strong>A</strong> = last 2 digits of your college ID</p>
+                <p><strong>B</strong> = Numbers in your Instagram username 💕</p>
+                <p><strong>C</strong> = your birth month (example: November → 11)</p>
+                <p><strong>Secret</strong> = A + B + C</p>
+            </div>
+            <div class="input-group">
+                <input type="text" id="password-input" placeholder="Enter the secret code" autocomplete="off">
+                <div class="error-message" id="error-message">Incorrect password. Try again!</div>
+            </div>
+            <button class="button" onclick="checkPassword()">Unlock</button>
+            <p class="hint">Hint: Combine all three values without spaces</p>
+        </div>
+    </div>
+
+    <!-- Surprise Modal -->
+    <div id="surprise-modal">
+        <button onclick="closeSurpriseModal()">✕</button>
+        <iframe src="tutu/index.html"></iframe>
+    </div>
+
+    <script>
+        // Encoded values in base64
+        const ENCODED_A = "ODQ=";   
+        const ENCODED_B = "MzAz";   
+        const ENCODED_C = "MDQ=";   
+        
+        // Decode the values
+        const A = atob(ENCODED_A);
+        const B = atob(ENCODED_B);
+        const C = atob(ENCODED_C);
+        
+        // Calculate the correct password
+        const CORRECT_PASSWORD = A + B + C; // "8430304"
+        
+        function openPasswordModal() {
+            document.getElementById("password-modal").style.display = "flex";
+        }
+        
+        function closePasswordModal() {
+            document.getElementById("password-modal").style.display = "none";
+            document.getElementById("password-input").value = "";
+            document.getElementById("error-message").style.display = "none";
+        }
+        
+        function checkPassword() {
+            const passwordInput = document.getElementById("password-input").value;
+            const errorMessage = document.getElementById("error-message");
+            
+            if (passwordInput === CORRECT_PASSWORD) {
+                document.getElementById("password-modal").style.display = "none";
+                document.getElementById("surprise-modal").style.display = "flex";
+                document.getElementById("password-input").value = "";
+                errorMessage.style.display = "none";
+            } else {
+                errorMessage.style.display = "block";
+                document.getElementById("password-input").value = "";
+                // Shake animation for wrong password
+                document.getElementById("password-input").style.animation = "shake 0.5s";
+                setTimeout(() => {
+                    document.getElementById("password-input").style.animation = "";
+                }, 500);
+            }
+        }
+        
+        function closeSurpriseModal() {
+            document.getElementById("surprise-modal").style.display = "none";
+        }
+        
+        // Add shake animation for wrong password
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                20%, 60% { transform: translateX(-5px); }
+                40%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Allow pressing Enter to submit password
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
 </body>
 </html>
